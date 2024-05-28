@@ -8,6 +8,7 @@ import store.pc.MacSeries;
 import java.util.Scanner;
 
 public class Kiosk {
+    Scanner input = new Scanner(System.in);
     // 질문
     public void line(){ // 각 단락의 구분을 짓기 위한 라인 출력
         for(int i=0; i<30; i++){
@@ -16,16 +17,23 @@ public class Kiosk {
         System.out.println(" ");
     }
     public int choose(int limit){ // 사용자로부터 선택지에 대한 답안 입력 반환
-        Scanner input = new Scanner(System.in);
         int userChosen = input.nextInt();
         line();
-        if(userChosen > limit || userChosen <= 0){
+        if(userChosen > limit || userChosen < 0){
             System.out.println("선택지 안에서 골라주세요!");
             userChosen = choose(limit);
+        }else if(userChosen == 0){ // 키오스크 종료 선택지를 택했을 경우
+            close();
         }
         return userChosen;
     }
-    public void start(){ // 키오스크 작동의 메인
+    public void close(){ // 키오스크 작동 종료
+        line();
+        System.out.println("루팡의 키오스크 이용을 종료합니다.");
+        System.out.println("다음에 또 방문해주세요.");
+        line();
+    }
+    public void useKiosk(){ // 키오스크 작동의 메인
         int userChosen;
         line();
         System.out.println("안녕하세요, 루팡입니다.");
@@ -247,28 +255,36 @@ public class Kiosk {
     }
 
     public void purchase(int price){
-
-        Scanner input = new Scanner(System.in);
+        line();
+        System.out.println("지불해야하는 금액: "+price);
+        System.out.println("✔︎ -1을 입력하면 구매가 취소되고 키오스크가 사용종료 됩니다.");
         line();
         System.out.print("지불할 금액을 입력해주세요: ");
+
         int userPayed = input.nextInt();
         line();
-        if(userPayed < price){
+        if(userPayed == -1){
+            System.out.println("결제가 취소되었습니다. 구매 프로세스를 종료합니다.");
+            close();
+        }else if(userPayed < price){
             int lack = price - userPayed;
             System.out.println("지불해야 할 금액: "+price);
             System.out.println("현재 지불 완료한 금액: "+userPayed);
             System.out.println("부족한 금액: "+lack);
-            System.out.println("구매에 실패하였습니다. 처음부터 다시 시도해주세요.");
+            System.out.println("금액을 추가 지불하거나 -1을 입력하여 구매를 취소해주세요.");
+            purchase(lack);
         }else if(userPayed == price){
             System.out.println("지불해야 할 금액: "+price);
             System.out.println("현재 지불 완료한 금액: "+userPayed);
             System.out.println("결제가 완료되었습니다. 주문하신 상품은 문앞으로 배송될 예정입니다. 아마도...");
+            close();
         }else if(userPayed > price){
             int change = userPayed - price;
             System.out.println("지불해야 할 금액: "+price);
             System.out.println("현재 지불 완료한 금액: "+userPayed);
             System.out.println("거스름돈: "+change);
             System.out.println("결제가 완료되었습니다. 주문하신 상품은 문앞으로 배송될 예정입니다. 아마도...");
+            close();
         }
     }
 }
