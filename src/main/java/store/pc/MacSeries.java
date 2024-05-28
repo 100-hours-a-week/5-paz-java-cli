@@ -16,11 +16,12 @@ public class MacSeries extends Product {
 
     public void setMemory(int memory){ // 메모리 용량 업그레이드 시에 메모리 스펙 & 가격 반영.
         int n = memory/this.memory - 1;
+        int additionalCost = 270000*n;
         if(n>=1){
-            this.price += 270000*n;
+            this.price += additionalCost;
         }
         System.out.println("선택한 메모리: "+memory);
-        System.out.println("추가 될 비용: "+ (270000*n));
+        System.out.println("추가 될 비용: "+ additionalCost);
         System.out.println("현재 기준 결제 예정 가격: "+ this.price);
         this.memory = memory;
     }

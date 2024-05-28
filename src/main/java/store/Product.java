@@ -17,11 +17,12 @@ public class Product {
 
     public void setStorage(int storage){ // 스토리지 용량 업그레이드 시에 용량과 가격 변경 반영.
         int n = storage/this.storage - 1;
+        int additionalCost = 270000*n;
         if(n>=1){
-            this.price += 270000 * n;
+            this.price += additionalCost;
         }
         System.out.println("선택한 스토리지 용량: "+storage);
-        System.out.println("추가 될 비용: "+ (270000*n));
+        System.out.println("추가 될 비용: "+ additionalCost);
         System.out.println("현재 기준 결제 예정 가격: "+ this.price);
         this.storage = storage;
     }

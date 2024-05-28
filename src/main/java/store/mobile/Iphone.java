@@ -12,12 +12,12 @@ public class Iphone extends Product {
     @Override
     public void setStorage(int storage){
         int n = storage/this.storage - 1;
-        System.out.println(storage+":"+this.storage+":"+n);
+        int additionalCost = 150000*n;
         if(n>=1){
-            this.price += 150000 * n;
+            this.price += additionalCost;
         }
         System.out.println("선택한 스토리지 용량: "+storage);
-        System.out.println("추가 될 비용: "+ (150000*n));
+        System.out.println("추가 될 비용: "+ additionalCost);
         System.out.println("현재 기준 결제 예정 가격: "+ this.price);
         this.storage = storage;
     }
