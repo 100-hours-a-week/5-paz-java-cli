@@ -1,4 +1,4 @@
-package store.mobile;
+package store.products.mobile;
 import store.Product;
 
 public class Iphone extends Product {
