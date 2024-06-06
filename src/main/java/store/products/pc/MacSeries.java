@@ -1,4 +1,4 @@
-package store.pc;
+package store.products.pc;
 
 import store.Product;
 

@@ -1,11 +1,11 @@
-package store.pc;
+package store.products.pc;
 
-public class MacMini extends  MacSeries{
-    protected int connectable;
+public class MacBook extends MacSeries{
+    protected int diaplaySize;
 
-    public MacMini(String kind, String product, String processor, int storage, int price, boolean portable, boolean diaplayable, int memory, int connectable) {
+    public MacBook(String kind, String product, String processor, int storage, int price, boolean portable, boolean diaplayable, int memory, int diaplaySize) {
         super(kind, product, processor, storage, price, portable, diaplayable, memory);
-        this.connectable = connectable;
+        this.diaplaySize = diaplaySize;
     }
 
     @Override
@@ -13,11 +13,10 @@ public class MacMini extends  MacSeries{
         System.out.println("현재 선택하신 제품 군은 "+this.kind+"입니다.");
         System.out.println("선택하신 제품의 제품명은 "+this.product+"입니다.");
         System.out.println("제품에 장착될 프로세서: "+this.processor);
-        System.out.println("제품의 저장공간: "+this.storage+"gb");
-        System.out.println("제품의 메모리: "+this.memory+"g");
+        System.out.println("제품의 저장공간: "+this.storage);
+        System.out.println("제품의 메모리: "+this.memory);
         System.out.println("제품의 휴대성: "+this.portable);
-        System.out.println("제품의 화면 탑재 여부: "+this.displayable);
-        System.out.println("제품에 연결 가능한 모니터 갯수: "+this.connectable);
+        System.out.println("화면 크기: "+this.diaplaySize+"인치");
         System.out.println("결제 예정 가격: "+this.price);
     }
 }
